@@ -32,9 +32,12 @@ const sections = [
     subtitle: 'Professional Credentials',
     description: 'Recognized expertise in data analytics and engineering',
     content: [
-      { title: 'AWS Certified Data Engineer', desc: 'Advanced cloud data solutions' },
-      { title: 'Google Data Analytics Certificate', desc: 'Professional data analysis' },
-      { title: 'Microsoft Azure Data Scientist', desc: 'Machine learning expertise' }
+      { title: 'AWS Certified Data Engineer', desc: 'Advanced cloud data solutions & architecture' },
+      { title: 'Google Data Analytics Certificate', desc: 'Professional data analysis & visualization' },
+      { title: 'Microsoft Azure Data Scientist', desc: 'Machine learning & AI expertise' },
+      { title: 'Tableau Desktop Specialist', desc: 'Advanced data visualization techniques' },
+      { title: 'Apache Spark Developer', desc: 'Big data processing & analytics' },
+      { title: 'Python Data Science Certification', desc: 'Advanced Python for data analysis' }
     ],
     backgroundImage: '/lovable-uploads/1522c645-995d-4cc9-bda1-ef715af83d9c.png'
   },
@@ -44,9 +47,12 @@ const sections = [
     subtitle: 'Data Solutions Portfolio',
     description: 'Real-world applications of data science and engineering',
     content: [
-      { title: 'E-commerce Analytics Dashboard', desc: 'Real-time sales insights with Tableau' },
-      { title: 'Predictive Customer Churn Model', desc: 'ML model reducing churn by 25%' },
-      { title: 'ETL Pipeline for Financial Data', desc: 'Automated data processing system' }
+      { title: 'E-commerce Analytics Dashboard', desc: 'Real-time sales insights with Tableau & SQL' },
+      { title: 'Predictive Customer Churn Model', desc: 'ML model reducing churn by 25% using Python' },
+      { title: 'ETL Pipeline for Financial Data', desc: 'Automated data processing with Apache Spark' },
+      { title: 'Social Media Sentiment Analysis', desc: 'NLP model analyzing customer feedback' },
+      { title: 'Supply Chain Optimization', desc: 'Data-driven logistics improvement system' },
+      { title: 'Healthcare Data Warehouse', desc: 'Scalable data architecture on AWS' }
     ],
     backgroundImage: '/lovable-uploads/61fe0aa1-04c7-4a4a-a9ad-bb674a9cd287.png'
   },
