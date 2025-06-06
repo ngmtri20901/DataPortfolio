@@ -1,7 +1,7 @@
 import { NotionResponse, NotionDatabaseResult } from '../types/notion';
 
 // Notion Database ID for the Ghibli Portfolio Data
-const NOTION_DATABASE_ID = '209803d3-0664-813d-829e-eed91d2d9600';
+const NOTION_DATABASE_ID = process.env.VITE_NOTION_DB_ID;
 
 // Updated mock data to match the new database structure
 

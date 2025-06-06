@@ -57,7 +57,7 @@ function transformNotionItem(item: NotionDatabaseResult): NotionPortfolioItem {
 export async function fetchPortfolioDataFromNotionAPI(section?: string): Promise<NotionPortfolioItem[]> {
   try {
     // Use the new Ghibli Portfolio Database ID
-    const DATABASE_ID = '209803d3-0664-813d-829e-eed91d2d9600';
+    const DATABASE_ID = process.env.VITE_NOTION_DB_ID;
     
     // Try to call the real Notion API through MCP server
     try {

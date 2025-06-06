@@ -45,7 +45,7 @@ export async function checkBackendHealth(): Promise<boolean> {
 export async function verifyNotionConnection(): Promise<boolean> {
   try {
     console.log('Verifying Notion API connection through backend...');
-    const databaseId = import.meta.env.VITE_NOTION_DB_ID || '209803d3-0664-813d-829e-eed91d2d9600';
+    const databaseId = import.meta.env.VITE_NOTION_DB_ID;
     const response = await makeBackendRequest(`/api/database/${databaseId}`);
     console.log('Notion database verified through backend:', response.title?.[0]?.plain_text || 'Untitled');
     return true;
