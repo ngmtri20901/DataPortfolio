@@ -6,8 +6,8 @@ const app = express();
 const PORT = 3001;
 
 // Environment variables
-const NOTION_TOKEN = process.env.NOTION_TOKEN || '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';
-const NOTION_DATABASE_ID = process.env.VITE_NOTION_DB_ID || '209803d3-0664-813d-829e-eed91d2d9600';
+const NOTION_TOKEN = process.env.NOTION_TOKEN;
+const NOTION_DATABASE_ID = process.env.VITE_NOTION_DB_ID;
 
 // Middleware
 app.use(cors());
