@@ -1,12 +1,13 @@
-
 import { motion } from 'framer-motion';
+import { useNotionData } from '../hooks/useNotionData';
+import { NotionPortfolioItem } from '../types/notion';
 
 interface Section {
   id: string;
   title: string;
   subtitle: string;
   description: string;
-  content?: Array<{ title: string; desc: string }>;
+  content?: Array<{ title: string; desc: string; link?: string }>;
   backgroundImage: string;
 }
 
@@ -16,6 +17,18 @@ interface PortfolioSectionProps {
 }
 
 const PortfolioSection = ({ section, isActive }: PortfolioSectionProps) => {
+  const { data: notionData, loading, error } = useNotionData(section.id);
+
+  // Transform notion data to match existing content format
+  const transformedContent = notionData.map((item: NotionPortfolioItem) => ({
+    title: item.title,
+    desc: item.content,
+    link: item.link,
+  }));
+
+  // Use Notion data if available, otherwise fall back to static content
+  const contentToRender = transformedContent.length > 0 ? transformedContent : section.content;
+
   return (
     <motion.div
       className="h-screen w-full relative flex items-center justify-center overflow-hidden"
@@ -72,15 +85,37 @@ const PortfolioSection = ({ section, isActive }: PortfolioSectionProps) => {
             {section.description}
           </motion.p>
           
+          {/* Loading State */}
+          {loading && (
+            <motion.div
+              className="text-white/70 text-sm sm:text-base"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              Loading content...
+            </motion.div>
+          )}
+          
+          {/* Error State */}
+          {error && (
+            <motion.div
+              className="text-red-300 text-sm sm:text-base"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              Error loading content: {error}
+            </motion.div>
+          )}
+          
           {/* Content Cards */}
-          {section.content && (
+          {contentToRender && !loading && !error && (
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mt-4 sm:mt-8"
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 1.1 }}
             >
-              {section.content.map((item, index) => (
+              {contentToRender.map((item, index) => (
                 <motion.div
                   key={index}
                   className="backdrop-blur-sm bg-white/10 rounded-2xl border border-white/20 p-3 sm:p-4 lg:p-6 hover:bg-white/20 transition-all duration-300"
@@ -89,12 +124,30 @@ const PortfolioSection = ({ section, isActive }: PortfolioSectionProps) => {
                   transition={{ duration: 0.4, delay: 1.3 + index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <h3 className="text-sm sm:text-base lg:text-xl font-semibold text-white mb-2 sm:mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-white/70">
-                    {item.desc}
-                  </p>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <h3 className="text-sm sm:text-base lg:text-xl font-semibold text-white mb-2 sm:mb-3 hover:underline decoration-2 underline-offset-4 transition-all duration-300">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm lg:text-base text-white/70">
+                        {item.desc}
+                      </p>
+                    </a>
+                  ) : (
+                    <>
+                      <h3 className="text-sm sm:text-base lg:text-xl font-semibold text-white mb-2 sm:mb-3 hover:underline decoration-2 underline-offset-4 transition-all duration-300 cursor-default">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm lg:text-base text-white/70">
+                        {item.desc}
+                      </p>
+                    </>
+                  )}
                 </motion.div>
               ))}
             </motion.div>

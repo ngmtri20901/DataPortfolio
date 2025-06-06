@@ -1,0 +1,19 @@
+{
+  "name": "ghibli-portfolio-notion-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend server for Notion API integration",
+  "main": "notion-api.js",
+  "scripts": {
+    "start": "node notion-api.js",
+    "dev": "node --watch notion-api.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 
